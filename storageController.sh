@@ -2,17 +2,18 @@
 
 RAMDISK="/mnt/picam_ramdisk"	# ramdisk location
 OFFLINE="/mnt/picam_offline"	# temporary offline storage
-NETWORK="/mnt/serv"		# network storage location
+NETWORK="/mnt/nas"		# network storage location
 
-SERVER_IP="192.168.1.10"	# ip of your server
-SERVER_USERNAME="MoCam"
-SERVER_PASSWORD="NC700xCam"
-SERVER_FOLDER="MoCam"		# the shared folder on the server
+SERVER_IP="192.168.0.30"	# ip of your server
+SERVER_USERNAME="picam"
+SERVER_PASSWORD="picam"
+SERVER_FOLDER="Public"		# the shared folder on the server
+SERVER_SUBFOLDER="picam"
 
 PICAM_SCRIPT_NAME="picam.py"
-PICAM_SCRIPT_LOCATION="/home/pi"
+PICAM_SCRIPT_LOCATION="/home/pi/PiCam"
 
-LOGFILE="/home/pi/picam.log"
+LOGFILE="/home/pi/PiCam/picam.log"
 
 # create the ramdisk and offline location if not found
 if [ ! -d $RAMDISK ]; then
@@ -79,14 +80,14 @@ do
 		for image in $(find $RAMDISK -type f -mmin +0.05); do
 			if ! fuser $image
 			then
-				mv $image $NETWORK
+				mv $image $NETWORK/$SERVER_SUBFOLDER
 			fi
 		done
 
 		for image in $(find $OFFLINE -type f -mmin +0.05); do
                         if ! fuser $image
 			then
-                                mv $image $NETWORK
+                                mv $image $NETWORK/$SERVER_SUBFOLDER
 				sleep 1
 			fi
                 done

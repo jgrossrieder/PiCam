@@ -20,15 +20,15 @@ imageFileLocation        = '/mnt/picam_ramdisk'
 imageFileLocationOffline = '/mnt/picam_offline'     # Set to None (without '') if not used
 
 # Camera
-camera.resolution = (1296, 972)
+camera.resolution = (1920, 1080)
 camera.hflip = False
 camera.vflip = False
 camera.rotation = 270
 
-imageQuality = 15  # jpg image quality 0-100 (200KB-1.5MB per image)
+imageQuality = 80  # jpg image quality 0-100 (200KB-1.5MB per image)
 
 # Astral location for sunset and sunrise/ Find your nearest city here: http://pythonhosted.org/astral/#cities
-astral_location = "Amsterdam"
+astral_location = "Bern"
 astralIsDay = True	# Start in Day mode
 
 # LED settings
@@ -156,7 +156,7 @@ def FilenameGenerator():
 #-----------------------------------------------------------------------------------------------
 def CameraRecordingSettings():
 
-    camera.framerate = 10
+    camera.framerate = 15
     camera.exposure_mode = 'auto'
     camera.awb_mode = 'auto'
     camera.iso = 0
